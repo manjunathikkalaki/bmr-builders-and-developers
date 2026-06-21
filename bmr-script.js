@@ -1,4 +1,3 @@
-// <!-- ═══════════════════════════════ JS ═══════════════════════════════ -->
   // ── HERO PARTICLES ──
   (function generateParticles() {
     const wrap = document.getElementById('heroParticles');
@@ -80,28 +79,12 @@
   function toggleNav() {
     document.getElementById('navLinks').classList.toggle('open');
   }
-  // On mobile, tapping the "About Us" parent link should open its
-  // dropdown (since :hover doesn't apply on touch) instead of navigating
-  // straight to #about. Tapping it again, or tapping a real link inside
-  // the dropdown or elsewhere in the menu, closes everything and lets
-  // the page jump to the target section.
-  document.querySelectorAll('.has-dropdown > a').forEach(parentLink => {
-    parentLink.addEventListener('click', (e) => {
-      if (window.innerWidth <= 900) {
-        const li = parentLink.parentElement;
-        const alreadyOpen = li.classList.contains('open');
-        document.querySelectorAll('.has-dropdown.open').forEach(open => open.classList.remove('open'));
-        if (!alreadyOpen) {
-          e.preventDefault();
-          li.classList.add('open');
-        }
-      }
-    });
-  });
-  document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
+
+  // Close the mobile menu automatically once a link is clicked,
+  // so it doesn't stay open (leaving a gap) after navigating.
+  document.querySelectorAll('#navLinks a').forEach(function(link) {
+    link.addEventListener('click', function() {
       document.getElementById('navLinks').classList.remove('open');
-      document.querySelectorAll('.has-dropdown.open').forEach(li => li.classList.remove('open'));
     });
   });
 
